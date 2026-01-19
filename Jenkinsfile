@@ -15,17 +15,17 @@ pipeline {
 
    stage('Build') {
      steps {
-	sh 'mvn clean package'
+	sh 'mvn clean -B package'
      }
    }
 
    stage('Deploy') {
      steps {
-      deploy adapters: [
-	tomcat9(credentialsId: 'c22256e-c2d6-4145-b5d5-00ba3b8833ac', url: 'http://192.168.76.102:8080'),
+      deploy adapters: 
+	[tomcat9(credentialsId: 'c22256e-c2d6-4145-b5d5-00ba3b8833ac', url: 'http://192.168.76.102:8080')],
 	contextPath: null,
 	war: 'target/hello-world.war'
-	]
+	
      }
    }
  }

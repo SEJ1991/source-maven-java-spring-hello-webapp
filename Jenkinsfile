@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  triggers {
+    pollSCM('* * * * *')   // ⏱ 매분 Git 변경 확인
+  }
+
   stages {
     stage('Checkout') {
       steps {
@@ -29,4 +33,3 @@ pipeline {
     }
   }
 }
-
